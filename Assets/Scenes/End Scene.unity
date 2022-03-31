@@ -4129,14 +4129,14 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1673933039}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11500000, guid: 5292f43d14a755847bc7acd99d134f2f, type: 3}
         m_TargetAssemblyTypeName: StartMenuUIManager, Assembly-CSharp
-        m_MethodName: OnPlayClick
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4983,7 +4983,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Space Invaders 3D
+  m_Text: Trash Invaders
 --- !u!222 &1987256381
 CanvasRenderer:
   m_ObjectHideFlags: 0

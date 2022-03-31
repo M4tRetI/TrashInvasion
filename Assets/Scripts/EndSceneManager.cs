@@ -7,16 +7,20 @@ public class EndSceneManager : MonoBehaviour {
     public GameObject UIWin;
     public GameObject UIGameOver;
 
+    public Database db;
+
     void Start ()  {
         UIGameOver.SetActive (!GameManager.winner);
         UIWin.SetActive (GameManager.winner);
     }
 
     public void OnQuitClick () {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            Application.Quit ();
-        #endif
+        Debug.Log("getClassifica");
+        db.getClassifica ();
+        // #if UNITY_EDITOR
+        //     UnityEditor.EditorApplication.isPlaying = false;
+        // #else
+        //     Application.Quit ();
+        // #endif
     }
 }
