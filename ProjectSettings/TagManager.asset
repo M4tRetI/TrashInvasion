@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Shield
   - Finish_Line
+  - Classifica_row
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,8 @@ using UnityEngine.Networking;
 public class Database : MonoBehaviour {
     public void getClassifica () {
         StartCoroutine (request ("http://localhost/TrashInvasion/classifica.php?getClassifica", (res) => {
-            Debug.Log (res.downloadHandler.text);
+            Classifica s = JsonUtility.FromJson <Classifica> (res.downloadHandler.text);
+            ClassificaSceneManager.populateTable (s.classifica);
         }, (res) => {
             Debug.LogError (res);
         }));
@@ -26,15 +27,15 @@ public class Database : MonoBehaviour {
     }
 }
 
+[Serializable]
+public class Classifica {
+    public Punteggio[] classifica;
+}
+
+[Serializable]
 public class Punteggio {
     public string nickname;
-    public uint score;
-    public DateTime date;
+    public int score;
 
-    Punteggio (string _nick, uint _score, DateTime _date) {
-        nickname = _nick;
-        score = _score;
-        date = _date;
-    }
 }
 

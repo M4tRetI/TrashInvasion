@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/End Scene.unity
     guid: 19d9c33345544d237834ece345282de6
+  - enabled: 1
+    path: Assets/Scenes/Classifica.unity
+    guid: 056ee5fd571cd4d439831ac3225223cb
   m_configObjects: {}

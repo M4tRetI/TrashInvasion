@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
         DontDestroyOnLoad (gameObject);
     }
 
-    public void OnPlayerHit () {
+    public void OnPlayerHit () {                /// TODO: Ripensare il sistema per avere un punteggio
         int numHearts = hearts.childCount;
         if (numHearts == 1) {
             instance.onGameOver ();

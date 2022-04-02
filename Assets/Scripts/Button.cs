@@ -10,7 +10,9 @@ public class Button : MonoBehaviour {
     public void OnMouseEnter () {
         Cursor.SetCursor (cursorTexture, hotSpot, cursorMode);
     }
-
+    public static void ResetCursor () {
+        Cursor.SetCursor (null, Vector2.zero, CursorMode.Auto);
+    }
     public void OnMouseExit () {
         Cursor.SetCursor (null, Vector2.zero, cursorMode);
     }
