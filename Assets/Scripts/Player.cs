@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
             bulletInstance.shooter = gameObject;
             canShoot = false;
             bulletShot.Play ();
+            GameManager.instance.modifyScore (ScoreBuffs.PLAYER_SHOOT);
             setTimedShootEnable ();
         }
     }

@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour {
         if (c.tag == "Bullet") Destroy(gameObject);
         else if (c.tag == "Finish_Line")
             EnemyWrapper.OnChildWin (transform.parent.gameObject.transform.parent.gameObject);
+        else if (c.tag == "Spawn_line")
+            EnemyWrapper.SpawnLine ();
     }
 
     void OnDestroy() {

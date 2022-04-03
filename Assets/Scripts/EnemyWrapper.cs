@@ -18,7 +18,6 @@ public class EnemyWrapper : MonoBehaviour {
     private float minPos;
     private System.Random rand;
     private List <Enemy> possibleShooters;
-    private static AudioSource hitAS;
 
     void Start () {
         newPos = startPos;
@@ -27,8 +26,6 @@ public class EnemyWrapper : MonoBehaviour {
 
         rand = new System.Random ();
         possibleShooters = new List <Enemy> ();
-
-        hitAS = GetComponent <AudioSource> ();
 
         Enemy[] enemyArr = this.GetComponentsInChildren <Enemy> ();
         foreach (Enemy en in enemyArr) {
@@ -66,15 +63,15 @@ public class EnemyWrapper : MonoBehaviour {
 
     public static void OnChildWin (GameObject enemies) {
         Destroy(enemies);
-        GameManager.instance.onGameOver ();
+        GameManager.instance.onFinish ();
     }
 
     public static void OnChildDestroyed (GameObject enemies) {
-        if (hitAS != null) hitAS.Play ();
+        GameManager.instance.modifyScore (ScoreBuffs.ENEMY_HIT);
         Enemy[] enemyArr = enemies.GetComponentsInChildren <Enemy> ();
         if (enemyArr.Length == 0) {
             Destroy(enemies);
-            GameManager.instance.onWin ();
+            GameManager.instance.onFinish ();
         }
         EnemyWrapper enWrapper = enemies.GetComponent <EnemyWrapper> ();
         enWrapper.possibleShooters.Clear ();
@@ -83,5 +80,9 @@ public class EnemyWrapper : MonoBehaviour {
                 enWrapper.possibleShooters.Add (en);
             }
         }
+    }
+
+    public static void SpawnLine () {
+        
     }
 }

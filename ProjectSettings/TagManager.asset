@@ -10,6 +10,8 @@ TagManager:
   - Shield
   - Finish_Line
   - Classifica_row
+  - Score
+  - Spawn_line
   layers:
   - Default
   - TransparentFX

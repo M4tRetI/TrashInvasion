@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class Database : MonoBehaviour {
     public void getClassifica () {
-        StartCoroutine (request ("http://localhost/TrashInvasion/classifica.php?getClassifica", (res) => {
+        StartCoroutine (request ("https://matte404.altervista.org/TrashInvasion/classifica.php?getClassifica", (res) => {
             Classifica s = JsonUtility.FromJson <Classifica> (res.downloadHandler.text);
             ClassificaSceneManager.populateTable (s.classifica);
         }, (res) => {

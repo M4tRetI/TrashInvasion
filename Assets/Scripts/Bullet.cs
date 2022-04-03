@@ -28,11 +28,11 @@ public class Bullet : MonoBehaviour {
             if (c.tag == "Shield") {
                 // Solo se ha sparato il player
                 if (_shooter != null && _shooter.GetComponent <Player> () != null) {
-                    GameManager.instance.OnPlayerHit ();
+                    GameManager.instance.modifyScore (ScoreBuffs.PLAYER_INDIRECT_HIT);
                 }
             }
             else if (c.tag == "Player") {
-                GameManager.instance.OnPlayerHit ();
+                GameManager.instance.modifyScore (ScoreBuffs.PLAYER_DIRECT_HIT);
             }
             GameObject instance = Instantiate (explosion, transform.position, Quaternion.identity).gameObject;
             Destroy (instance, explosionLifeTime);

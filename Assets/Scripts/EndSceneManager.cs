@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
 
 public class EndSceneManager : MonoBehaviour {
-    public GameObject UIWin;
-    public GameObject UIGameOver;
+    public int score;
+    public Text scoreText;
 
     void Start ()  {
-        UIGameOver.SetActive (!GameManager.winner);
-        UIWin.SetActive (GameManager.winner);
+        score = GameManager.score;
+        scoreText.text = score + "";
         SceneManager.LoadSceneAsync ("Classifica", LoadSceneMode.Additive);
     }
     public void OnPlayAgainClick () {
-        SceneManager.LoadScene ("Game");
+        SceneManager.LoadScene ("Start Menu");
         Button.ResetCursor ();
     }
     public void OnQuitClick () {
