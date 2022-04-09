@@ -24,8 +24,8 @@
 <br><br>
 ## Calcolo punteggio per Leaderboard
 Il punteggio viene calcolato solo per il vincitore della partita
-![Equazione](https://github.com/M4tRetI/TrashInvasion/blob/coop/Formula_calcolo_score.png)
-Il bouns (b) vale 250
+![Equazione](./Formula_calcolo_score.png)
+<br>Il bouns (b) vale 250
 
 Legenda:
  - dk : Delta tra rapporto kill/sparo dei due giocatori (perdente - vincitore)
