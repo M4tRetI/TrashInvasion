@@ -25,7 +25,8 @@
 ## Calcolo punteggio per Leaderboard
 Il punteggio viene calcolato solo per il vincitore della partita
 ![Equazione](./Formula_calcolo_score.png)
-<br>Il bouns (b) vale 250
+<br>**Il link al grafico è** [**qui**](https://www.desmos.com/calculator/evwekbh6lv)
+<br>**Il bouns (b) vale 250**
 
 Legenda:
  - dk : Delta tra rapporto kill/sparo dei due giocatori (perdente - vincitore)
