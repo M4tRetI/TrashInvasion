@@ -7,7 +7,7 @@
 - Generazione endless dei nemici             ✔️ (INVECE DI MORIRE, IL NEMICO SI TELETRASPORTA PIU' INDIENTRO)
 - Griglia sullo sfondo per simboleggiare lo stato del vincitore. Più quadratini colorati della propria parte significa un punteggio maggiore.
   Ogni quadratino vale tipo 800 punti. Vince chi li conquista tutti.
-- Se i nemici arrivano troppo vicino al player, egli perde.
+- Se i nemici arrivano troppo vicino al player, egli perde.     ✔️
 
 ### Meccaniche
 - Power-up per intralciare l'avversario o favorire se stessi      | Arrivano dall'alto come i cubi di Mario Kart
