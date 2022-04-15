@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
 public enum ScoreBuffs {
     PLAYER_DIRECT_HIT = -269,
     PLAYER_INDIRECT_HIT = -54,
@@ -12,15 +9,17 @@ public enum ScoreBuffs {
 }
 public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
-    public string nickname;
-    public static int score;
-    public Text scoreUI;
+    public static int[] scores;
     public AudioSource playerHitAS;
     public AudioSource finishAS;
 
+    private DateTime startTime;
+    private DateTime finishTime;
+
     void Start () {
-        score = 0;
-        nickname = StartMenuUIManager.nickname;
+        scores = new int[2] {0, 0};
+        startTime = DateTime.Now;
+
         if (instance == null) {
             instance = this;
         } else if (instance != this) {
@@ -28,20 +27,26 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void modifyScore (ScoreBuffs sb) {
-        score += (int) sb;
+    /// <summary>Modifica il punteggio di un player</summary>
+    /// <param name="playerIndex">0 - left; 1 - right</param>
+    /// <param name="sb">Quale ScoreBuffs è avvenuto</param>
+    public void modifyScore (int playerIndex, ScoreBuffs sb) {
+        scores[playerIndex] += (int) sb;
         updateScoreUI ();
 
         if (sb != ScoreBuffs.PLAYER_SHOOT) {
             playerHitAS.Play ();
         }
     }
-    public void onFinish () {
+    public void onFinish (int playerIndex) {
         finishAS.Play ();
+        Debug.Log (playerIndex + " ha perso!!!!");
+        finishTime = DateTime.Now;
+        Debug.Log ("Il gioco è durato: " + (finishTime - startTime).ToString ());
         SceneManager.LoadSceneAsync ("End Scene");
     }
 
     void updateScoreUI () {
-        scoreUI.text = score + "";
+        Debug.Log ("Left: " + scores[0] + " - Right: " + scores[1]);
     }
 }

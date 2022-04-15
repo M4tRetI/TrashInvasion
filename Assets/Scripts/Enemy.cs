@@ -1,24 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
     public Transform bullet;
     public float zSize = 6;
+    public float tpDZWhenDie;
 
     void Start () { }
     void Update () { }
 
     private void OnTriggerEnter (Collider c) {
-        if (c.tag == "Bullet") Destroy(gameObject);
-        else if (c.tag == "Finish_Line")
-            EnemyWrapper.OnChildWin (transform.parent.gameObject.transform.parent.gameObject);
-        else if (c.tag == "Spawn_line")
-            EnemyWrapper.SpawnLine ();
+        if (c.tag == "Bullet") FakeDestroy ();
+        else if (c.tag == "Finish_Line_Left")
+            EnemyWrapper.OnChildWin (0, transform.parent.gameObject);
+        else if (c.tag == "Finish_Line_Right")
+            EnemyWrapper.OnChildWin (1, transform.parent.gameObject);
     }
 
+    private void FakeDestroy () {
+        transform.position += new Vector3 (0, 0, tpDZWhenDie * 2);
+        EnemyWrapper.OnChildDestroyed (transform.parent.gameObject);
+    }
     void OnDestroy() {
-        EnemyWrapper.OnChildDestroyed (transform.parent.gameObject.transform.parent.gameObject);
+        EnemyWrapper.OnChildDestroyed (transform.parent.gameObject);
     }
 
     public void Shoot () {

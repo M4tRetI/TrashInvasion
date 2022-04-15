@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 9209204176525527311, guid: 5c3986cb5f9b1494a8bee1cc61af1b5f, type: 3}
   zSize: 6
+  tpDZWhenDie: 10.8
 --- !u!54 &357618229
 Rigidbody:
   m_ObjectHideFlags: 0
