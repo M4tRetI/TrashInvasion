@@ -3,8 +3,8 @@
 ## Gioco (interazione con l'utente)
 ### Dinamiche
 - Gioco a due
-  - Due player e nemici in comune
-- Generazione endless dei nemici
+  - Due player e nemici in comune            ✔️ GRAFICA FATTA
+- Generazione endless dei nemici             ✔️ (INVECE DI MORIRE, IL NEMICO SI TELETRASPORTA PIU' INDIENTRO)
 - Griglia sullo sfondo per simboleggiare lo stato del vincitore. Più quadratini colorati della propria parte significa un punteggio maggiore.
   Ogni quadratino vale tipo 800 punti. Vince chi li conquista tutti.
 - Se i nemici arrivano troppo vicino al player, egli perde.
