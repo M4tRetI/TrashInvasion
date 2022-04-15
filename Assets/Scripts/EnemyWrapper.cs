@@ -36,20 +36,20 @@ public class EnemyWrapper : MonoBehaviour {
     }
 
     void Update () {
-        // Horizontal
+        // Spostamento orizzontale
         if (newPos.x == maxPos) direction = false;
         else if (newPos.x == minPos) direction = true;
 
         newPos.x += Time.deltaTime * hSpeed * (direction ? 1 : -1);
         newPos.x = Mathf.Clamp (newPos.x, minPos, maxPos);
         
-        // Vertical
+        // Spostamento verticale
         newPos.z -= Time.deltaTime * vSpeed;
         transform.position = newPos;
 
-        // Enemies shoot
+        // Sparo dei nemici
         if (canShoot) {
-            possibleShooters[rand.Next (possibleShooters.Count)].Shoot ();
+            possibleShooters [rand.Next (possibleShooters.Count)].Shoot ();
             canShoot = false;
             setTimedShootEnable ();
         }
