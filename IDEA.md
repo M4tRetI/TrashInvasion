@@ -36,6 +36,45 @@ Legenda:
  - b  : Bonus in caso di come back, tipo per meno del 30% della partità è stato perdente
 
 ---------------
+## Algoritmi
+### Calcolo delle dimensioni dei quadrati dello score
+In base alla risoluzione del monitor viene calcolato quanti quadratini dello score possono essere inseriti nello schermo in modo tale che le misure siano interi.
+<br>E' valido sia per altezza che larghezza.
+<br>Lo script è in Python3 per comodità.
+```python3
+MIN_DIM = 150       # Dimensione minima dei quadratini
+
+while True:
+  r = int(input(">>> "));
+  l = []
+  
+  if r % 2 == 0:
+    l.append (2)
+  if r % 3 == 0:
+    l.append (3)
+  if r % 7 == 0:
+    l.append (7)
+  if not l:
+    print ("Questo numero è una merda")
+  
+  d = 1
+  c = 1
+  a = False
+  
+  for d in l:
+    a = True
+    c = 1
+    v = r
+    while (v > MIN_DIM and d != 1):
+      c += d    # qui c'è un bug. La c non è affidabile
+      v /= d
+    if v.is_integer ():
+      print (d, '|', c, v, f"{v/96*2.54}cm")  # divisore, num_quad, dim_quad pixel, dim_quad cm
+  
+  if not a:
+    print (d, c, v)
+```
+---------------
 
 ## Quesiti / Problemi da risolvere
  *Nessuno*
