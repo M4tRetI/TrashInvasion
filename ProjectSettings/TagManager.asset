@@ -13,6 +13,9 @@ TagManager:
   - Player_Right
   - Finish_Line_Left
   - Finish_Line_Right
+  - Player_Right_Score
+  - Player_Left_Score
+  - Box
   layers:
   - Default
   - TransparentFX

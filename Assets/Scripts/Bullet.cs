@@ -32,7 +32,6 @@ public class Bullet : MonoBehaviour {
                     GameManager.instance.modifyScore (1, ScoreBuffs.PLAYER_DIRECT_HIT);
                     break;
                 case "Enemy":
-                    Debug.Log ("colpito");
                     GameManager.instance.modifyScore ((_shooter.tag == "Player_Right" ? 1 : 0), ScoreBuffs.ENEMY_HIT);
                     break;
             }
