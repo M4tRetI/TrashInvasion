@@ -7,12 +7,12 @@ using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
 
 public class EndSceneManager : MonoBehaviour {
-    public int score;
+    public int[] scores;
     public Text scoreText;
 
     void Start ()  {
-        score = GameManager.score;
-        scoreText.text = score + "";
+        scores = GameManager.scores;
+        scoreText.text = "Left: " + scores[0] + " - Right: " + scores[1];
         SceneManager.LoadSceneAsync ("Classifica", LoadSceneMode.Additive);
     }
     public void OnPlayAgainClick () {

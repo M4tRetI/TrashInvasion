@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour {
@@ -21,19 +19,23 @@ public class Bullet : MonoBehaviour {
     }
 
     private void OnTriggerEnter (Collider c) {
-        string[] gameobjectsToCheck = { "Wall", "Enemy", "Shield", "Player" };
+        string[] gameobjectsToCheck = { "Wall", "Enemy", "Player_Right", "Player_Left" };
         if (Array.Exists (gameobjectsToCheck, el => el == c.tag)) {
             GameObject _shooter = shooter;
             if (gameObject != null) Destroy (gameObject);
-            if (c.tag == "Shield") {
-                // Solo se ha sparato il player
-                if (_shooter != null && _shooter.GetComponent <Player> () != null) {
-                    GameManager.instance.modifyScore (ScoreBuffs.PLAYER_INDIRECT_HIT);
-                }
+            
+            switch (c.tag) {
+                case "Player_Left":
+                    GameManager.instance.modifyScore (0, ScoreBuffs.PLAYER_DIRECT_HIT);
+                    break;
+                case "Player_Right": 
+                    GameManager.instance.modifyScore (1, ScoreBuffs.PLAYER_DIRECT_HIT);
+                    break;
+                case "Enemy":
+                    GameManager.instance.modifyScore ((_shooter.tag == "Player_Right" ? 1 : 0), ScoreBuffs.ENEMY_HIT);
+                    break;
             }
-            else if (c.tag == "Player") {
-                GameManager.instance.modifyScore (ScoreBuffs.PLAYER_DIRECT_HIT);
-            }
+            
             GameObject instance = Instantiate (explosion, transform.position, Quaternion.identity).gameObject;
             Destroy (instance, explosionLifeTime);
         }
