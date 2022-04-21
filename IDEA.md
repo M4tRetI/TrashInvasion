@@ -11,10 +11,9 @@
 
 ### Meccaniche
 - Power-up per intralciare l'avversario o favorire se stessi      | Arrivano dall'alto come i cubi di Mario Kart    ✔️ _GRAFICA E COLLEGAMENTO A FUNZIONE FATTO_
-  - Accecamento termporaneo
-  - Moltiplicare x2
-  - Rallentamento del rateo di fuoco del nemico
-  - Scudo anti nemici/player
+  - Moltiplicare x2                                     ✔️ _Codice dei power-up fatto, manca la grafica che lo comunichi_
+  - Rallentamento del rateo di fuoco del nemico         ✔️ _""_
+  - Scudo anti nemici/player                            ✔️ _""_
 - Se un player invade la parte altrui, prende un tot di danno in un tempo t;    ✔️
 - Un player può stunnare l'altro avvicinandosi molto e premendo un tasto . Se però lo colpisce, perde una marea di punti (per bilanciare).
   Con stunnare si intende impossibilità di sparare. Per difendersi l'altro player, in un lasso molto limitato di tempo deve premere un bottone, e così facendo sfugge
