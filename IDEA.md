@@ -10,16 +10,15 @@
 - Se i nemici arrivano troppo vicino al player, egli perde.     ✔️
 
 ### Meccaniche
-- Power-up per intralciare l'avversario o favorire se stessi      | Arrivano dall'alto come i cubi di Mario Kart    ✔️ _GRAFICA E COLLEGAMENTO A FUNZIONE FATTO_
-  - Accecamento termporaneo
-  - Moltiplicare x2
-  - Rallentamento del rateo di fuoco del nemico
-  - Scudo anti nemici/player
+- Power-up per intralciare l'avversario o favorire se stessi      | Arrivano dall'alto come i cubi di Mario Kart    ✔️
+  - Moltiplicare x2                                     ✔️
+  - Rallentamento del rateo di fuoco del nemico         ✔️ 
+  - Scudo anti nemici/player                            ✔️ 
 - Se un player invade la parte altrui, prende un tot di danno in un tempo t;    ✔️
 - Un player può stunnare l'altro avvicinandosi molto e premendo un tasto . Se però lo colpisce, perde una marea di punti (per bilanciare).
   Con stunnare si intende impossibilità di sparare. Per difendersi l'altro player, in un lasso molto limitato di tempo deve premere un bottone, e così facendo sfugge
   dalle grinfie del bastardo [perry]
-- Boost periodico per giocatore: aumenta di tanto velocità
+- Boost periodico per giocatore: aumenta di tanto velocità  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _**NO**_
   
 **Tempo stimato di lavoro**: 16 gg
 <br><br>
