@@ -11,11 +11,19 @@ public class Player : MonoBehaviour {
     public AudioSource bulletShot;
     public bool amIRight;
 
+    public KeyCode leftKey;
+    public KeyCode rightKey;
+    public KeyCode shootKey;
+
     void Start () {}
     
     void Update () {
         // Movimento
-        transform.position += new Vector3 (Input.GetAxis ("Horizontal") * Time.deltaTime * speed, 0, 0);
+        if (Input.GetKey (leftKey))
+            transform.position += new Vector3 (-1 * Time.deltaTime * speed, 0, 0);
+        if (Input.GetKey (rightKey))
+            transform.position += new Vector3 (Time.deltaTime * speed, 0, 0);
+            
 
         // if (sideDamangeEnabling) {
         //     if (amIRight && transform.position.x < 0) {
@@ -28,7 +36,7 @@ public class Player : MonoBehaviour {
         //         setTimedSideDamageEnabling ();
         //     }
         // }
-        if (canShoot && Input.GetKey (KeyCode.Space)) {
+        if (canShoot && Input.GetKey (shootKey)) {
             Vector3 pos = transform.position;
             pos.z += 3;
             Bullet bulletInstance = Instantiate (bullet, pos, Quaternion.identity).gameObject.GetComponent <Bullet> ();
