@@ -17,18 +17,17 @@ public class Player : MonoBehaviour {
         // Movimento
         transform.position += new Vector3 (Input.GetAxis ("Horizontal") * Time.deltaTime * speed, 0, 0);
 
-        if (sideDamangeEnabling) {
-            if (amIRight && transform.position.x < 0) {
-                GameManager.instance.modifyScore (1, ScoreBuffs.PLAYER_IN_OPPONENT_SIDE);
-                sideDamangeEnabling = false;
-                setTimedSideDamageEnabling ();
-            } else if (!amIRight && transform.position.x > 0) {
-                GameManager.instance.modifyScore (0, ScoreBuffs.PLAYER_IN_OPPONENT_SIDE);
-                sideDamangeEnabling = false;
-                setTimedSideDamageEnabling ();
-            }
-        }
-
+        // if (sideDamangeEnabling) {
+        //     if (amIRight && transform.position.x < 0) {
+        //         GameManager.instance.modifyScore (1, ScoreBuffs.PLAYER_IN_OPPONENT_SIDE);
+        //         sideDamangeEnabling = false;
+        //         setTimedSideDamageEnabling ();
+        //     } else if (!amIRight && transform.position.x > 0) {
+        //         GameManager.instance.modifyScore (0, ScoreBuffs.PLAYER_IN_OPPONENT_SIDE);
+        //         sideDamangeEnabling = false;
+        //         setTimedSideDamageEnabling ();
+        //     }
+        // }
         if (canShoot && Input.GetKey (KeyCode.Space)) {
             Vector3 pos = transform.position;
             pos.z += 3;

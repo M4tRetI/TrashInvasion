@@ -98,11 +98,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooter: {fileID: 0}
   player: {fileID: 0}
-  speed: 25
+  speed: 28
   explosion: {fileID: 2008966658129059336, guid: e5306164368aad0198f62cf33bead22d, type: 3}
   explosionLifeTime: 0.6
   direction: 1
-  bulletLifeTime: 3
+  bulletLifeTime: 4.5
 --- !u!135 &6783624944296933869
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class EnemyWrapper : MonoBehaviour {
     public float hSpeed = 7.0f;
     public float vSpeed = 0.1f;
+    public int incVSpeedMS;
+    public float deltaVSpeed;
     public float movementsRange = 5.0f;
     public bool direction = false;
     public int fireRateMS = 450;
@@ -30,6 +33,8 @@ public class EnemyWrapper : MonoBehaviour {
                 possibleShooters.Add (en);
             }
         }
+
+        verticalSpeed ();
     }
 
     void Update () {
@@ -51,6 +56,18 @@ public class EnemyWrapper : MonoBehaviour {
         }
     }
     
+    async void verticalSpeed () {
+        await Task.Delay (incVSpeedMS);
+        if (GameManager.instance != null) {
+            DateTime f = GameManager.instance.finishTime;
+            if (f != null) {
+                vSpeed *= deltaVSpeed;
+            }
+        } else return;
+
+        verticalSpeed ();
+    }
+
     async void setTimedShootEnable () {
         await Task.Delay (fireRateMS);
         // Riabilita la possibilità di sparare

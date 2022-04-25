@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PowerUps {
+    MOLTIPLICATORE,
+    RALLENTA_RATEO_NEMICO,
+    SCUDO,
+}
+
 public class Box : MonoBehaviour {
     void OnParticleCollision(GameObject other) {
         switch (other.tag) {

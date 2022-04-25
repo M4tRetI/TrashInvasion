@@ -26,10 +26,12 @@ public class Bullet : MonoBehaviour {
             
             switch (c.tag) {
                 case "Player_Left":
-                    GameManager.instance.modifyScore (0, ScoreBuffs.PLAYER_DIRECT_HIT);
+                    if (!GameManager.instance.pl_scudo)
+                        GameManager.instance.modifyScore (0, ScoreBuffs.PLAYER_DIRECT_HIT);
                     break;
-                case "Player_Right": 
-                    GameManager.instance.modifyScore (1, ScoreBuffs.PLAYER_DIRECT_HIT);
+                case "Player_Right":
+                    if (!GameManager.instance.pr_scudo)
+                        GameManager.instance.modifyScore (1, ScoreBuffs.PLAYER_DIRECT_HIT);
                     break;
                 case "Enemy":
                     GameManager.instance.modifyScore ((_shooter.tag == "Player_Right" ? 1 : 0), ScoreBuffs.ENEMY_HIT);
