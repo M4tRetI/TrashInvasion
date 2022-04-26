@@ -5,19 +5,45 @@ using UnityEngine.Networking;
 
 public class Database : MonoBehaviour {
     public void getClassifica () {
-        StartCoroutine (request ("https://matte404.altervista.org/TrashInvasion/classifica.php?getClassifica", (res) => {
+        StartCoroutine (getRequest ("https://matte404.altervista.org/TrashInvasion/classifica.php?getClassifica", (res) => {
             Classifica s = JsonUtility.FromJson <Classifica> (res.downloadHandler.text);
             ClassificaSceneManager.populateTable (s.classifica);
         }, (res) => {
             Debug.LogError (res);
         }));
     }
-    private IEnumerator<UnityWebRequestAsyncOperation> request (
+    public void addPunteggio (string nickname, int score) {
+        StartCoroutine (postRequest ("https://matte404.altervista.org/TrashInvasion/classifica.php?addPunteggio", (res) => {
+            getClassifica ();
+        }, (res) => {
+            Debug.LogError (res);
+        }, nickname, score));
+    }
+    private IEnumerator<UnityWebRequestAsyncOperation> getRequest (
         string url,
         System.Action <UnityWebRequest> success,
         System.Action <string> error
     ) {
         UnityWebRequest webRequest = UnityWebRequest.Get (url);
+        yield return webRequest.SendWebRequest ();
+
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError) {
+            Debug.LogError (webRequest.error);
+            error (webRequest.error);
+        } else { success (webRequest); }
+    }
+    private IEnumerator<UnityWebRequestAsyncOperation> postRequest (         // DA FARE QUESTOOO
+        string url,
+        System.Action <UnityWebRequest> success,
+        System.Action <string> error,
+        string nickname,
+        int score
+    ) {
+        WWWForm f = new WWWForm ();
+        f.AddField ("nickname", nickname);
+        f.AddField ("score", score);
+
+        UnityWebRequest webRequest = UnityWebRequest.Post (url, f);
         yield return webRequest.SendWebRequest ();
 
         if (webRequest.result == UnityWebRequest.Result.ConnectionError) {

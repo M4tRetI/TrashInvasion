@@ -1491,8 +1491,9 @@ MonoBehaviour:
   scoreContainer: {fileID: 223974226}
   leftScoreRect: {fileID: 2046921202458091108, guid: 38d07f4042762574d9743ef7d5a05498, type: 3}
   rightScoreRect: {fileID: 6539842583094106763, guid: d76770776a6af0041a669b6487604602, type: 3}
-  rectPoints: 1500
+  rectPoints: 285
   scoreInitialized: 0
+  finalScore: 0
   pu_timeout: 5000
   pu_moltiplicatore: 2
   pu_slow: 1.5
@@ -2609,13 +2610,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.5833829, y: -0, z: -0, w: 0.81219727}
-  m_LocalPosition: {x: 0.5, y: 44.12, z: -12.59}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.4, y: 55.6, z: 8.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 71.378, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1017487713
 GameObject:
   m_ObjectHideFlags: 0

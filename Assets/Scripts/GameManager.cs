@@ -54,8 +54,8 @@ public class GameManager : MonoBehaviour {
         startTime = DateTime.Now;
         rect_dim = new Vector2 ();
         screen_dim = new Vector2 (Screen.width, Screen.height);
-        rect_dim.x = scoreRectDim ((int) screen_dim.x, 150, true);
-        rect_dim.y = scoreRectDim ((int) screen_dim.y, 150, false);
+        rect_dim.x = scoreRectDim ((int) screen_dim.x, 60, true);
+        rect_dim.y = scoreRectDim ((int) screen_dim.y, 60, false);
         scoreInitialized = false;
         pu_moltiplicatore = 0;
         pl_molt = pr_molt = false;
@@ -243,23 +243,17 @@ public class GameManager : MonoBehaviour {
     int calcFinalScore () {
         Player winner = (winnerPlayer == 0 ? player_left : player_right);
         float t = (finishTime - startTime).Seconds;
-        Debug.Log (player_left.num_kill + " " + player_right.num_spari);
-        double p = player_right.num_kill;
-        double b = player_right.num_spari;              // BUG
-        Debug.Log ((double)p / (double)b);
-        float dk = Mathf.Clamp (Math.Abs ((float) (player_left.num_kill / player_left.num_spari) - (float) (player_right.num_kill / player_right.num_spari)), 0.001f, 1);
+        float dk = Mathf.Clamp (
+            Math.Abs (
+                (float) player_left.num_kill / (float) player_left.num_spari - 
+                (float) player_right.num_kill / (float) player_right.num_spari
+            ), 0.001f, 1f);
         float rt = t / Mathf.Clamp (winner.num_hit, 1, float.PositiveInfinity);
-        Debug.Log (dk + " | " + t + " - " + rt);
         int score = winner.num_perry * 140;
-        Debug.Log (score);
         score += (int) (0.0125f * Math.Pow (t - 180, 2)) + 220;
-        Debug.Log (score);
         score += (int) (4 * rt);
-        Debug.Log (score);
         score = (int) (score / (dk * 15));
-        Debug.Log (score);
-        /////  IL CALCOLO DEL PUNTEGGIO NON FUNZIONA, DK è SEMPRE 0.001 PERCHè LE DUE FRAZIONI FANNO 0, NONOSTANTE TUTTI I CAST DEL CASO
-        /////  HO NOTATO ANCHE CHE NUM_KILL DI QUELLO COMPLETAMENTE FERMO ERA > A NUM_SPARI == 1
+        
         return score;
     }
 }

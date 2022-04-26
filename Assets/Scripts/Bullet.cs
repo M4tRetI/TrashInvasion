@@ -21,7 +21,6 @@ public class Bullet : MonoBehaviour {
     private void OnTriggerEnter (Collider c) {
         string[] gameobjectsToCheck = { "Wall", "Enemy", "Player_Right", "Player_Left" };
         if (Array.Exists (gameobjectsToCheck, el => el == c.tag)) {
-            GameObject _shooter = shooter;
             if (gameObject != null) Destroy (gameObject);
             
             switch (c.tag) {
@@ -40,8 +39,10 @@ public class Bullet : MonoBehaviour {
                     }
                     break;
                 case "Enemy":
-                    GameManager.instance.modifyScore ((_shooter.tag == "Player_Right" ? 1 : 0), ScoreBuffs.ENEMY_HIT);
-                    _shooter.GetComponent <Player> ().num_kill ++;
+                    if (shooter != null) {
+                        GameManager.instance.modifyScore ((shooter.tag == "Player_Right" ? 1 : 0), ScoreBuffs.ENEMY_HIT);
+                        shooter.GetComponent <Player> ().num_kill ++;
+                    }
                     break;
             }
             
