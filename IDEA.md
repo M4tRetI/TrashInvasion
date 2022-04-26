@@ -29,7 +29,7 @@ Il punteggio viene calcolato solo per il vincitore della partita
 <br>**Il bouns (b) vale 250** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _**NO**_
 
 Legenda:
- - dk : Delta tra rapporto kill/sparo dei due giocatori (perdente - vincitore)
+ - dk : Delta tra rapporto kill/sparo dei due giocatori (perdente - vincitore) * e^(t / numero di colpi sparati dal vincitore)
  - t  : Durata della partita in secondi
  - p  : Numero di perry eseguiti
  - rt : Rapporto tra tempo e numero di colpi ricevuti dai nemici (solo del vincitore)
