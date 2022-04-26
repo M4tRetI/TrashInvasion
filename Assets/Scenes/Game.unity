@@ -1491,7 +1491,7 @@ MonoBehaviour:
   scoreContainer: {fileID: 223974226}
   leftScoreRect: {fileID: 2046921202458091108, guid: 38d07f4042762574d9743ef7d5a05498, type: 3}
   rightScoreRect: {fileID: 6539842583094106763, guid: d76770776a6af0041a669b6487604602, type: 3}
-  rectPoints: 285
+  rectPoints: 214
   scoreInitialized: 0
   finalScore: 0
   pu_timeout: 5000
@@ -6140,6 +6140,10 @@ PrefabInstance:
     - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
       propertyPath: shootKey
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: fireRateMS
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4478831820538136402, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
       propertyPath: m_RootOrder

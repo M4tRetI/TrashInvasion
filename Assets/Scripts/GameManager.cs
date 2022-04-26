@@ -47,8 +47,10 @@ public class GameManager : MonoBehaviour {
 
     private DateTime startTime;
     public DateTime finishTime;
+    private bool endSceneCalled;
 
     void Start () {
+        endSceneCalled = false;
         deltaScores = new int[2] {0, 0};
         finalScore = 0;
         startTime = DateTime.Now;
@@ -70,13 +72,18 @@ public class GameManager : MonoBehaviour {
     }
 
     public void onFinish (int playerIndex) {
-        finishAS.Play ();
-        winnerPlayer = (playerIndex == 0 ? 1 : 0);
-        finishTime = DateTime.Now;
-        finalScore = calcFinalScore ();
-        Debug.Log ("Sinistra: " + player_left.num_hit + " - " + player_left.num_kill + " - " + player_left.num_spari);
-        Debug.Log ("Destra: " + player_right.num_hit + " - " + player_right.num_kill + " - " + player_right.num_spari);
-        SceneManager.LoadSceneAsync ("End Scene");
+        if (!endSceneCalled) {
+            finishAS.Play ();
+            winnerPlayer = (playerIndex == 0 ? 1 : 0);
+            finishTime = DateTime.Now;
+            finalScore = calcFinalScore ();
+            Debug.Log ((finishTime - startTime).Seconds);
+            Debug.Log ("Sinistra: " + player_left.num_hit + " - " + player_left.num_kill + " - " + player_left.num_spari);
+            Debug.Log ("Destra: " + player_right.num_hit + " - " + player_right.num_kill + " - " + player_right.num_spari);
+            SceneManager.LoadSceneAsync ("End Scene");
+
+            endSceneCalled = true;
+        }
     }
 
     /// <summary>Modifica il punteggio di un player tenendo conto dei PowerUps in vigore</summary>
@@ -248,6 +255,8 @@ public class GameManager : MonoBehaviour {
                 (float) player_left.num_kill / (float) player_left.num_spari - 
                 (float) player_right.num_kill / (float) player_right.num_spari
             ), 0.001f, 1f);
+        Debug.Log (dk);
+        dk *= (float) Math.Pow (Math.E, t / winner.num_spari);
         float rt = t / Mathf.Clamp (winner.num_hit, 1, float.PositiveInfinity);
         int score = winner.num_perry * 140;
         score += (int) (0.0125f * Math.Pow (t - 180, 2)) + 220;

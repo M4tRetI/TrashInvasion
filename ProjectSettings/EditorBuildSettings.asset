@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Inserimento Nickname.unity
-    guid: 8bee3081252660942bf169cb980c40cc
-  - enabled: 1
     path: Assets/Scenes/End Scene.unity
     guid: 19d9c33345544d237834ece345282de6
   - enabled: 1
