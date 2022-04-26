@@ -15,7 +15,16 @@ public class Player : MonoBehaviour {
     public KeyCode rightKey;
     public KeyCode shootKey;
 
-    void Start () {}
+    // Statistiche per il calcolo del punteggio
+    public int num_spari;
+    public int num_kill;
+    public int num_perry;
+    public int num_hit;
+
+    void Start () {
+        num_kill = num_perry = num_hit = 0;
+        num_spari = 1;
+    }
     
     void Update () {
         // Movimento
@@ -45,6 +54,7 @@ public class Player : MonoBehaviour {
             bulletShot.Play ();
             GameManager.instance.modifyScore ((amIRight ? 1 : 0), ScoreBuffs.PLAYER_SHOOT);
             setTimedShootEnable ();
+            num_spari ++;
         }
     }
 
@@ -58,4 +68,8 @@ public class Player : MonoBehaviour {
         // Riabilita la possibilità di sparare
         canShoot = true;
     }
+
+    public void enemyKilled () { num_kill ++; }
+    public void perryOccurred () { num_perry ++; }
+    public void hitted () { num_hit ++; }
 }

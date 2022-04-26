@@ -947,8 +947,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a1b1ba6f8c0dd6f9bcff4e49bd2055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scores: 
   scoreText: {fileID: 1157809383}
+  winnerText: {fileID: 1497285165}
 --- !u!1 &392531016
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,8 +2270,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 305, y: -134}
-  m_SizeDelta: {x: 546.3, y: 350}
+  m_AnchoredPosition: {x: 317.7, y: -134}
+  m_SizeDelta: {x: 570, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &794848887
 MonoBehaviour:
@@ -3864,8 +3864,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -207, y: 427}
-  m_SizeDelta: {x: 148.2, y: 39.5}
+  m_AnchoredPosition: {x: -183.1, y: 427.5}
+  m_SizeDelta: {x: 192, y: 39.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1497285165
 MonoBehaviour:
@@ -3900,7 +3900,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.25
-  m_Text: DestrA
+  m_Text: SinistrA
 --- !u!222 &1497285166
 CanvasRenderer:
   m_ObjectHideFlags: 0

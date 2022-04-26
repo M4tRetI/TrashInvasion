@@ -15,14 +15,18 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     public AudioSource playerHitAS;
     public AudioSource finishAS;
+    public int winnerPlayer;
 
     // Punteggio
-    public static int[] scores;
+    public static int[] deltaScores;
     public GameObject scoreContainer;
     public GameObject leftScoreRect;
     public GameObject rightScoreRect;
     private Vector2 rect_dim;
     public static Vector2 screen_dim;
+    public int rectPoints;
+    public bool scoreInitialized;
+    public int finalScore;
 
     // Power-up
     public int pu_timeout;
@@ -45,16 +49,18 @@ public class GameManager : MonoBehaviour {
     public DateTime finishTime;
 
     void Start () {
-        scores = new int[2] {0, 0};
+        deltaScores = new int[2] {0, 0};
+        finalScore = 0;
         startTime = DateTime.Now;
         rect_dim = new Vector2 ();
         screen_dim = new Vector2 (Screen.width, Screen.height);
         rect_dim.x = scoreRectDim ((int) screen_dim.x, 150, true);
         rect_dim.y = scoreRectDim ((int) screen_dim.y, 150, false);
-        updateScoreUI ();
+        scoreInitialized = false;
         pu_moltiplicatore = 0;
-        // pl_molt = pr_molt = false;
-        // pl_scudo = pr_scudo = false;
+        pl_molt = pr_molt = false;
+        pl_scudo = pr_scudo = false;
+        updateScoreUI ();
 
         if (instance == null) {
             instance = this;
@@ -65,9 +71,11 @@ public class GameManager : MonoBehaviour {
 
     public void onFinish (int playerIndex) {
         finishAS.Play ();
-        Debug.Log (playerIndex + " ha perso!!!!");
+        winnerPlayer = (playerIndex == 0 ? 1 : 0);
         finishTime = DateTime.Now;
-        Debug.Log ("Il gioco è durato: " + (finishTime - startTime).ToString ());
+        finalScore = calcFinalScore ();
+        Debug.Log ("Sinistra: " + player_left.num_hit + " - " + player_left.num_kill + " - " + player_left.num_spari);
+        Debug.Log ("Destra: " + player_right.num_hit + " - " + player_right.num_kill + " - " + player_right.num_spari);
         SceneManager.LoadSceneAsync ("End Scene");
     }
 
@@ -79,15 +87,19 @@ public class GameManager : MonoBehaviour {
         if ((pl_molt && playerIndex == 0) || (pr_molt && playerIndex == 1))
             moltipilcatore = pu_moltiplicatore;
         int delta = (int) ((int) sb < 0 ? (int) sb / moltipilcatore : (int) sb * moltipilcatore);
-        scores[playerIndex] += delta;
-        updateScoreUI ();
+        deltaScores[playerIndex] += delta;
+        try { updateScoreUI (); }
+        catch (NoEnemyScoreRectsExcpetion ex) {
+            onFinish (ex.playerIndex);
+        }
 
         if (sb != ScoreBuffs.PLAYER_SHOOT) {
             playerHitAS.Play ();
         }
     }
     void updateScoreUI () {
-        if (scores[0] + scores[1] == 0) {
+        if (!scoreInitialized) {
+            scoreInitialized = true;
             Debug.Log (screen_dim + " | " + rect_dim);
             if (rect_dim.x > 0 && rect_dim.y > 0) {
                 Vector2 num_rect = new Vector2 (screen_dim.x / rect_dim.x, screen_dim.y / rect_dim.y);
@@ -107,14 +119,20 @@ public class GameManager : MonoBehaviour {
                 //TODO: aggiungere un alert migliore
             }
         } else {
-            //TODO: La logica per la conquista dei quadratini va pensata bene. Se i punteggi sono negativi??
+            if (deltaScores[0] >= rectPoints) {
+                deltaScores[0] -= rectPoints;
+                try { changeScoreRectOwner (0); } catch { throw; }
+            }
+            if (deltaScores[1] >= rectPoints) {
+                deltaScores[1] -= rectPoints;
+                try { changeScoreRectOwner (1); } catch { throw; }
+            }
         }
-        // Debug.Log (scores[0] + "  " + scores[1]);
     }
-    bool changeScoreRectOwner (int playerIndex) {
+    void changeScoreRectOwner (int playerIndex) {
         GameObject[] opponentScoreRects = GameObject.FindGameObjectsWithTag (
             (playerIndex == 0 ? "Player_Right_Score" : "Player_Left_Score"));
-        if (opponentScoreRects.Length < 1) return false;
+        if (opponentScoreRects.Length < 1) throw new NoEnemyScoreRectsExcpetion ((playerIndex == 0 ? 1 : 0));
 
         RectTransform toModify = opponentScoreRects [UnityEngine.Random.Range (0, opponentScoreRects.Length)].GetComponent <RectTransform> ();
         GameObject scoreRect = Instantiate (
@@ -126,8 +144,6 @@ public class GameManager : MonoBehaviour {
         rt.transform.localPosition = toModify.transform.localPosition;
         rt.sizeDelta = toModify.sizeDelta;
         Destroy (toModify.gameObject);
-
-        return true;
     }
 
     /// <summary>Data la dimensione dello schermo restituisce la dimensione dei rettangolini per lo score</summary>
@@ -158,7 +174,6 @@ public class GameManager : MonoBehaviour {
         GameManager.instance.modifyScore (playerIndex, ScoreBuffs.POWERUP_COLLECTED);
         Array powerups = Enum.GetValues (typeof (PowerUps));
         PowerUps pu = (PowerUps) powerups.GetValue (new System.Random ().Next (powerups.Length));
-        Debug.Log ("ON: " + playerIndex + " " + pu);
         // Applica il power-up estratto
         switch (pu) {
             case PowerUps.MOLTIPLICATORE:
@@ -170,10 +185,6 @@ public class GameManager : MonoBehaviour {
                     powerUpIndicator_right.color = co_moltiplicatore;
                     pr_molt = true;
                 }
-                // pl_molt = playerIndex == 0;
-                // pr_molt = playerIndex == 1;
-                // powerUpIndicator_left.color = (pl_molt ? co_moltiplicatore : new Color (0, 0, 0));
-                // powerUpIndicator_right.color = (pr_molt ? co_moltiplicatore : new Color (0, 0, 0));
                 break;
             case PowerUps.RALLENTA_RATEO_NEMICO:
                 // Rallenta il nemico, non se stesso. Per questo la condizione
@@ -187,8 +198,6 @@ public class GameManager : MonoBehaviour {
                 } else if (playerIndex == 1) {
                     pr_scudo = true;
                 }
-                // pl_scudo = playerIndex == 0;
-                // pr_scudo = playerIndex == 1;
 
                 player_left_shield.SetActive (pl_scudo);
                 player_right_shield.SetActive (pr_scudo);
@@ -200,7 +209,9 @@ public class GameManager : MonoBehaviour {
 
     async void resetPowerup (int playerIndex, PowerUps pu) {
         await Task.Delay (pu_timeout);
-        Debug.Log ("OFF: " + playerIndex + " " + pu);
+
+        if (player_left == null || player_right == null || player_left_shield == null || 
+            player_right_shield == null || powerUpIndicator_left == null || powerUpIndicator_right == null) return;
         switch (pu) {
             case PowerUps.MOLTIPLICATORE:
                 if (playerIndex == 0) {
@@ -211,11 +222,6 @@ public class GameManager : MonoBehaviour {
                     powerUpIndicator_right.color = new Color (0, 0, 0);
                     pr_molt = false;
                 }
-                // pl_molt = (playerIndex == 0 ? false : pl_molt);
-                // pr_molt = (playerIndex == 1 ? false : pr_molt);
-                // if (!pl_molt)
-                // powerUpIndicator_left.color = (pl_molt ? co_moltiplicatore : new Color (0, 0, 0));
-                // powerUpIndicator_right.color = (pr_molt ? co_moltiplicatore : new Color (0, 0, 0));
                 break;
             case PowerUps.RALLENTA_RATEO_NEMICO:
                 Player ptm = (playerIndex == 1 ? player_left : player_right);
@@ -228,11 +234,41 @@ public class GameManager : MonoBehaviour {
                 } else if (playerIndex == 1) {
                     pr_scudo = false;
                 }
-                // pl_scudo = (playerIndex == 0 ? false : pl_scudo);
-                // pr_scudo = (playerIndex == 1 ? false : pr_scudo);
                 player_left_shield.SetActive (pl_scudo);
                 player_right_shield.SetActive (pr_scudo);
                 break;
         }
+    }
+
+    int calcFinalScore () {
+        Player winner = (winnerPlayer == 0 ? player_left : player_right);
+        float t = (finishTime - startTime).Seconds;
+        Debug.Log (player_left.num_kill + " " + player_right.num_spari);
+        double p = player_right.num_kill;
+        double b = player_right.num_spari;              // BUG
+        Debug.Log ((double)p / (double)b);
+        float dk = Mathf.Clamp (Math.Abs ((float) (player_left.num_kill / player_left.num_spari) - (float) (player_right.num_kill / player_right.num_spari)), 0.001f, 1);
+        float rt = t / Mathf.Clamp (winner.num_hit, 1, float.PositiveInfinity);
+        Debug.Log (dk + " | " + t + " - " + rt);
+        int score = winner.num_perry * 140;
+        Debug.Log (score);
+        score += (int) (0.0125f * Math.Pow (t - 180, 2)) + 220;
+        Debug.Log (score);
+        score += (int) (4 * rt);
+        Debug.Log (score);
+        score = (int) (score / (dk * 15));
+        Debug.Log (score);
+        /////  IL CALCOLO DEL PUNTEGGIO NON FUNZIONA, DK è SEMPRE 0.001 PERCHè LE DUE FRAZIONI FANNO 0, NONOSTANTE TUTTI I CAST DEL CASO
+        /////  HO NOTATO ANCHE CHE NUM_KILL DI QUELLO COMPLETAMENTE FERMO ERA > A NUM_SPARI == 1
+        return score;
+    }
+}
+
+class NoEnemyScoreRectsExcpetion : Exception {
+    public int playerIndex;
+    public NoEnemyScoreRectsExcpetion () {}
+    ///<param name="playerIndex">Indice del giocatore che non ha più quadratini</param>
+    public NoEnemyScoreRectsExcpetion (int playerIndex) {
+        this.playerIndex = playerIndex;
     }
 }

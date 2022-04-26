@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Threading.Tasks;
 
 public class EndSceneManager : MonoBehaviour {
-    public int[] scores;
     public Text scoreText;
+    public Text winnerText;
 
     void Start ()  {
-        scores = GameManager.scores;
-        scoreText.text = "Left: " + scores[0] + " - Right: " + scores[1];
+        winnerText.text = (GameManager.instance.winnerPlayer == 0 ? "SinistrA" : "DestrA");
+        Debug.Log (GameManager.instance.finalScore);
+        scoreText.text = GameManager.instance.finalScore + "";
         SceneManager.LoadSceneAsync ("Classifica", LoadSceneMode.Additive);
     }
     public void OnPlayAgainClick () {
