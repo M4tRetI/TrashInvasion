@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class StartMenuUIManager : MonoBehaviour {
     public AudioSource error;
+    public GameObject Tutorial;
     void Start () {}
     void Update () {}
 
     public void OnPlayClick () {
-        SceneManager.LoadScene ("Game");
+        Tutorial.SetActive(true);
     }
     public void OnQuitClick () {
         #if UNITY_EDITOR
@@ -19,5 +20,8 @@ public class StartMenuUIManager : MonoBehaviour {
         #else
             Application.Quit();
         #endif
+    }
+    public void OnTutorialRead(){
+        SceneManager.LoadScene ("Game");
     }
 }
