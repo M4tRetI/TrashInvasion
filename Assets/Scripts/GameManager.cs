@@ -56,8 +56,8 @@ public class GameManager : MonoBehaviour {
         startTime = DateTime.Now;
         rect_dim = new Vector2 ();
         screen_dim = new Vector2 (Screen.width, Screen.height);
-        rect_dim.x = scoreRectDim ((int) screen_dim.x, 60, true);
-        rect_dim.y = scoreRectDim ((int) screen_dim.y, 60, false);
+        rect_dim.x = scoreRectDim ((int) screen_dim.x, 110, true);
+        rect_dim.y = scoreRectDim ((int) screen_dim.y, 110, false);
         scoreInitialized = false;
         pu_moltiplicatore = 0;
         pl_molt = pr_molt = false;
