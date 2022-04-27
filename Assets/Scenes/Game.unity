@@ -4791,6 +4791,38 @@ PrefabInstance:
       propertyPath: shootKey
       value: 271
       objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: perryBullet
+      value: 
+      objectReference: {fileID: 5555851660245386305, guid: 697ecd52241d6c8dcb4dcf525516eb57, type: 3}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: canShootPerry
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: shootPerryKey
+      value: 264
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: perrySchivaKey
+      value: 261
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: perryFireRateMS
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: canSchivarePerry
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: perrySchivaDeltaY
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: perrySchivaDurationMS
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 4478831820538136402, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -6144,6 +6176,38 @@ PrefabInstance:
     - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
       propertyPath: fireRateMS
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: perryBullet
+      value: 
+      objectReference: {fileID: 5555851660245386305, guid: 697ecd52241d6c8dcb4dcf525516eb57, type: 3}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: canShootPerry
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: shootPerryKey
+      value: 119
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: perrySchivaKey
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: perryFireRateMS
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: canSchivarePerry
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: perrySchivaDeltaY
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478831820538136401, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
+      propertyPath: perrySchivaDurationMS
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4478831820538136402, guid: e420d4c3d1e0ff54e964bf8ca097f59e, type: 3}
       propertyPath: m_RootOrder

@@ -77,9 +77,8 @@ public class GameManager : MonoBehaviour {
             winnerPlayer = (playerIndex == 0 ? 1 : 0);
             finishTime = DateTime.Now;
             finalScore = calcFinalScore ();
-            Debug.Log ((finishTime - startTime).Seconds);
-            Debug.Log ("Sinistra: " + player_left.num_hit + " - " + player_left.num_kill + " - " + player_left.num_spari);
-            Debug.Log ("Destra: " + player_right.num_hit + " - " + player_right.num_kill + " - " + player_right.num_spari);
+            Debug.Log ("Sinistra: " + player_left.num_perry + " " + player_left.num_hit + " - " + player_left.num_kill + " - " + player_left.num_spari);
+            Debug.Log ("Destra: " + player_right.num_perry + " " + player_right.num_hit + " - " + player_right.num_kill + " - " + player_right.num_spari);
             SceneManager.LoadSceneAsync ("End Scene");
 
             endSceneCalled = true;
@@ -255,15 +254,19 @@ public class GameManager : MonoBehaviour {
                 (float) player_left.num_kill / (float) player_left.num_spari - 
                 (float) player_right.num_kill / (float) player_right.num_spari
             ), 0.001f, 1f);
-        Debug.Log (dk);
         dk *= (float) Math.Pow (Math.E, t / winner.num_spari);
         float rt = t / Mathf.Clamp (winner.num_hit, 1, float.PositiveInfinity);
+        Debug.Log (winner.num_perry);
         int score = winner.num_perry * 140;
         score += (int) (0.0125f * Math.Pow (t - 180, 2)) + 220;
         score += (int) (4 * rt);
         score = (int) (score / (dk * 15));
         
         return score;
+    }
+
+    public Player getOtherPlayer (Player p) {
+        return (p.amIRight ? player_left : player_right);
     }
 }
 

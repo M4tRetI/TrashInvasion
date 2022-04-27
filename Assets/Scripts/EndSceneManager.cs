@@ -8,7 +8,6 @@ public class EndSceneManager : MonoBehaviour {
 
     void Start ()  {
         winnerText.text = (GameManager.instance.winnerPlayer == 0 ? "SinistrA" : "DestrA");
-        Debug.Log (GameManager.instance.finalScore);
         scoreText.text = GameManager.instance.finalScore + "";
         SceneManager.LoadSceneAsync ("Classifica", LoadSceneMode.Additive);
     }

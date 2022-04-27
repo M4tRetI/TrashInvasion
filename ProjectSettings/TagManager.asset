@@ -16,6 +16,7 @@ TagManager:
   - Player_Right_Score
   - Player_Left_Score
   - Box
+  - PerryBullet
   layers:
   - Default
   - TransparentFX

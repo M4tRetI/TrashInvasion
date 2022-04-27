@@ -14,7 +14,6 @@ public class ClassificaSceneManager : MonoBehaviour {
 
     void Start () {
         winnerNickname = "";
-        Debug.Log("getClassifica");
         db.getClassifica ();
     }
 
