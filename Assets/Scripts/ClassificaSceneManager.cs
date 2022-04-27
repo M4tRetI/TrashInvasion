@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
 public class ClassificaSceneManager : MonoBehaviour {
     public GameObject insNickname;
@@ -19,11 +17,17 @@ public class ClassificaSceneManager : MonoBehaviour {
 
     public static void populateTable (Punteggio[] classifica) {
         GameObject[] rows = GameObject.FindGameObjectsWithTag ("Classifica_row");
-        for (int i = 0; i < 5; i++) {
-            Text[] row_texts = rows[i].GetComponentsInChildren <Text> ();
-            row_texts[1].text = classifica[i].nickname;
-            row_texts[2].text = classifica[i].score + "";
+        foreach (GameObject row in rows) {
+            Text[] row_texts = row.GetComponentsInChildren <Text> ();
+            int i = Int32.Parse (row_texts[0].text.Substring (0, 1));
+            row_texts [1].text= classifica[i - 1].nickname;
+            row_texts [2].text = classifica[i - 1].score + "";
         }
+        // for (int i = 0; i < 5; i++) {
+        //     Text[] row_texts = rows[i].GetComponentsInChildren <Text> ();
+        //     row_texts[1].text = classifica[i].nickname;
+        //     row_texts[2].text = classifica[i].score + "";
+        // }
     }
 
     void savePunteggio () {
